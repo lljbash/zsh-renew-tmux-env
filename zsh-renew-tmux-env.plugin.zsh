@@ -1,9 +1,14 @@
 # Renew environment variables in tmux
 
 if [ -n "$TMUX" ]; then
+    function renew_tmux_env_one {
+        oneenv=$(tmux show-environment | grep "^$1")
+        [[ ! -z $oneenv ]] && export $oneenv
+    }
     function renew_tmux_env {
-        export $(tmux show-environment | grep "^SSH_AUTH_SOCK")
-        export $(tmux show-environment | grep "^DISPLAY")
+        renew_tmux_env_one DISPLAY
+        renew_tmux_env_one SSH_CONNECTION
+        renew_tmux_env_one SSH_AUTH_SOCK
     }
 else
     function renew_tmux_env {}
