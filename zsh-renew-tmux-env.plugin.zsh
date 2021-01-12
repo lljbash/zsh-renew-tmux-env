@@ -20,6 +20,6 @@ function preexec {
 
 zle -N renew_tmux_env
 # ctrl-alt-T
-bindkey -M emacs '^[^T' sudo-command-line
-bindkey -M vicmd '^[^T' sudo-command-line
-bindkey -M viins '^[^T' sudo-command-line
+bindkey -M emacs '^[^T' renew_tmux_env
+bindkey -M vicmd '^[^T' renew_tmux_env
+bindkey -M viins '^[^T' renew_tmux_env
